@@ -406,7 +406,7 @@
    KONFIGURASI
    ===================================================================== */
 // >>> GANTI dengan URL Web App dari Google Apps Script (Langkah 3 tutorial)
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa3tJ13qFFpOEYA1DsnebNLBl7X7ngp8myA3X_1qWTse_H1iCZ4ZVCU7FCmeHimzJFVA/exec';
+const SCRIPT_URL = 'PASTE_URL_WEB_APP_KAMU_DISINI';
 
 const VALID_TOKEN = '187540';
 
@@ -571,7 +571,10 @@ function submitVote(){
     return;
   }
 
-  fetch(SCRIPT_URL, { method:'POST', body:fd })
+  // Memakai mode 'no-cors': browser TIDAK mengizinkan membaca balasan
+  // dari Apps Script (beda domain), jadi kita kirim saja tanpa membaca respons.
+  // Pengecekan anti double-vote tetap dijaga di sisi Apps Script (server).
+  fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:fd })
     .then(()=>{ closeModal(); show('screen-done'); })
     .catch(err=>{
       console.error('Error!', err.message);
