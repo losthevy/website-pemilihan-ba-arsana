@@ -178,6 +178,10 @@
     border:1px solid rgba(177,17,22,.12);
   }
   .avatar svg{width:54%;height:54%;opacity:.55}
+  .nominee.abstain .avatar{background:linear-gradient(160deg,#efe7d2,#d9cdaf)}
+  .nominee.abstain .avatar svg{opacity:.55}
+  .nominee.abstain.sel{border-color:var(--gold);box-shadow:0 0 0 4px rgba(122,90,18,.16),0 10px 24px var(--shadow)}
+  .nominee.abstain.sel::after{background:var(--gold)}
   .nominee .nm{font-weight:700;font-size:.96rem;color:var(--ink);line-height:1.2}
   .nominee .cls{font-size:.78rem;color:#9a8a6e;margin-top:3px}
 
@@ -408,35 +412,35 @@
 // >>> GANTI dengan URL Web App dari Google Apps Script (Langkah 3 tutorial)
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx8KwzfnoU8XRUYRVuy7zMBjbpXMSyrLAoWW34tDaL0Uo_zXn6ty1PRLT7oPUwrTibh0g/exec';
 
-const VALID_TOKEN = '187540';
+const VALID_TOKEN = '9080';
 
 // Pemetaan 6 digit awal NIM -> prodi
 const PRODI_MAP = {
   '411125': 'MAP',
-  '412125': 'MKN',
-  '413125': 'ASP'
+  '411225': 'MKN',
+  '411325': 'ASP'
 };
 
 // Daftar calon Ketua Angkatan (4 orang) -- ubah nama sesuai kebutuhan
 const KETANG = [
-  { no:1, nama:'Nama Calon 1', cls:'Ketang' },
-  { no:2, nama:'Nama Calon 2', cls:'Ketang' },
-  { no:3, nama:'Nama Calon 3', cls:'Ketang' },
-  { no:4, nama:'Nama Calon 4', cls:'Ketang' }
+  { no:1, nama:'Muhammad Ihsan Zaki', cls:'Ketang' },
+  { no:2, nama:'Abu Dzar Al Ghifari', cls:'Ketang' },
+  { no:3, nama:'Setiawan Dwicahyo', cls:'Ketang' },
+  { no:4, nama:'M.Faqih Radanta Ali', cls:'Ketang' }
 ];
 
 // Daftar calon DPP per prodi -- ubah nama sesuai kebutuhan
 const DPP = {
   MAP: [
-    { no:1, nama:'Nama Calon MAP 1', cls:'D-IV MAP' },
-    { no:2, nama:'Nama Calon MAP 2', cls:'D-IV MAP' }
+    { no:1, nama:'Muhamad Davarel Prabowo', cls:'D-IV MAP' },
+    { no:2, nama:'NOEL JHODY PRATAMA', cls:'D-IV MAP' }
   ],
   MKN: [
-    { no:1, nama:'Nama Calon MKN 1', cls:'D-IV MKN' },
-    { no:2, nama:'Nama Calon MKN 2', cls:'D-IV MKN' }
+    { no:1, nama:'Ferdinanda Afifi Saifuddin', cls:'D-IV MKN' },
+    { no:2, nama:'Muhammad Keisya Jirjis', cls:'D-IV MKN' }
   ],
   ASP: [
-    { no:1, nama:'Nama Calon ASP 1', cls:'D-IV ASP' }
+    { no:1, nama:'Afif Fakhruddin', cls:'D-IV ASP' }
   ]
 };
 
@@ -448,6 +452,10 @@ let state = { nim:'', prodi:'', ketang:null, dpp:null };
 const AVATAR_SVG = `<svg viewBox="0 0 64 64" fill="none">
   <circle cx="32" cy="24" r="12" fill="#B11116"/>
   <path d="M12 56c0-11 9-18 20-18s20 7 20 18Z" fill="#B11116"/></svg>`;
+
+const ABSTAIN_SVG = `<svg viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="19" stroke="#7A5A12" stroke-width="5"/>
+  <line x1="19" y1="45" x2="45" y2="19" stroke="#7A5A12" stroke-width="5" stroke-linecap="round"/></svg>`;
 
 /* =====================================================================
    NAVIGASI SCREEN
@@ -507,6 +515,14 @@ function card(item, selected){
   </div>`;
 }
 
+function abstainCard(selected){
+  return `<div class="nominee abstain${selected?' sel':''}" data-no="0">
+    <div class="avatar">${ABSTAIN_SVG}</div>
+    <div class="nm">Tidak Memilih</div>
+    <div class="cls">Kotak Kosong</div>
+  </div>`;
+}
+
 function renderKetang(){
   const grid = document.getElementById('gridKetang');
   grid.innerHTML = KETANG.map(k=>card(k, state.ketang===k.no)).join('');
@@ -518,13 +534,16 @@ function renderKetang(){
 function renderDpp(){
   const grid = document.getElementById('gridDpp');
   const list = DPP[state.prodi] || [];
-  grid.innerHTML = list.map(d=>card(d, state.dpp===d.no)).join('');
+  const single = list.length === 1;
+  let html = list.map(d=>card(d, state.dpp===d.no)).join('');
+  if(single){ html += abstainCard(state.dpp === 0); }
+  grid.innerHTML = html;
   grid.querySelectorAll('.nominee').forEach(el=>{
     el.onclick = ()=>{ state.dpp = +el.dataset.no; renderDpp(); };
   });
   document.getElementById('dppSub').textContent =
-    list.length === 1
-      ? 'Terdapat 1 calon DPP untuk prodi Anda. Pilih untuk melanjutkan.'
+    single
+      ? `Hanya terdapat 1 calon DPP untuk prodi ${state.prodi}. Pilih calon tersebut, atau pilih "Tidak Memilih" (kotak kosong).`
       : `Pilih satu (1) dari ${list.length} calon DPP prodi ${state.prodi}.`;
 }
 
@@ -538,14 +557,16 @@ function nextToDpp(){
 function backToKetang(){ show('screen-ketang'); }
 
 function confirmVote(){
-  if(state.dpp === null){ alert('Silakan pilih satu Calon DPP terlebih dahulu.'); return; }
+  if(state.dpp === null){ alert('Silakan pilih satu Calon DPP atau opsi "Tidak Memilih" terlebih dahulu.'); return; }
   const ketangNama = KETANG.find(k=>k.no===state.ketang).nama;
-  const dppNama = DPP[state.prodi].find(d=>d.no===state.dpp).nama;
+  const dppText = state.dpp === 0
+    ? 'Tidak Memilih (Kotak Kosong)'
+    : 'No.' + state.dpp + ' – ' + DPP[state.prodi].find(d=>d.no===state.dpp).nama;
   document.getElementById('summaryBox').innerHTML = `
     <div class="row"><span>NIM</span><span>${state.nim}</span></div>
     <div class="row"><span>Prodi</span><span>${state.prodi}</span></div>
     <div class="row"><span>Ketua Angkatan</span><span>No.${state.ketang} – ${ketangNama}</span></div>
-    <div class="row"><span>DPP ${state.prodi}</span><span>No.${state.dpp} – ${dppNama}</span></div>`;
+    <div class="row"><span>DPP ${state.prodi}</span><span>${dppText}</span></div>`;
   document.getElementById('overlay').classList.add('active');
 }
 function closeModal(){ document.getElementById('overlay').classList.remove('active'); }
@@ -562,7 +583,9 @@ function submitVote(){
   fd.append('NIM', state.nim);
   fd.append('Prodi', state.prodi);
   fd.append('Ketang', 'No.' + state.ketang + ' - ' + KETANG.find(k=>k.no===state.ketang).nama);
-  fd.append('DPP', 'No.' + state.dpp + ' - ' + DPP[state.prodi].find(d=>d.no===state.dpp).nama);
+  fd.append('DPP', state.dpp === 0
+    ? 'Tidak Memilih (Kotak Kosong)'
+    : 'No.' + state.dpp + ' - ' + DPP[state.prodi].find(d=>d.no===state.dpp).nama);
 
   // Jika SCRIPT_URL belum diisi, langsung ke halaman selesai (mode demo)
   if(SCRIPT_URL === 'PASTE_URL_WEB_APP_KAMU_DISINI'){
