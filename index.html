@@ -69,8 +69,9 @@
     width:46px;height:46px;flex:0 0 46px;border-radius:50%;
     background:var(--bg);display:grid;place-items:center;
     border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.25);
+    overflow:hidden;
   }
-  .crest svg{width:30px;height:30px}
+  .crest img{width:82%;height:82%;object-fit:contain}
   .brand b{font-family:'Cinzel',serif;font-size:1.02rem;letter-spacing:1px;display:block;line-height:1.1}
   .brand span{font-size:.72rem;opacity:.85;letter-spacing:2px;text-transform:uppercase}
   .jp-tag{margin-left:auto;font-family:'Noto Sans JP',sans-serif;font-weight:900;
@@ -91,15 +92,17 @@
   }
   .login-card{width:100%;max-width:430px;padding:42px 38px 38px;text-align:center}
   .seal{
-    width:88px;height:88px;margin:0 auto 14px;border-radius:50%;
-    background:linear-gradient(135deg,var(--red),var(--red-deep));
+    width:150px;height:150px;margin:0 auto 16px;border-radius:50%;
+    background:var(--paper);
     display:grid;place-items:center;
     box-shadow:0 10px 26px var(--shadow);
     border:3px solid var(--bg);
+    overflow:hidden;
   }
-  .seal svg{width:54px;height:54px}
+  .seal img{width:80%;height:80%;object-fit:contain}
   .jp-sub{font-family:'Noto Sans JP',sans-serif;color:var(--red);font-weight:700;
     letter-spacing:6px;font-size:.85rem;margin-bottom:4px}
+  .logo-sub{height:38px;width:auto;margin:0 auto 10px;display:block;object-fit:contain}
   .login-card h1{
     font-family:'Cinzel',serif;color:var(--red-deep);
     font-size:1.5rem;line-height:1.2;letter-spacing:1px;margin-bottom:4px;
@@ -149,6 +152,7 @@
   .panel-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
   .kanji-badge{font-family:'Noto Sans JP',sans-serif;font-weight:900;color:var(--red);
     font-size:1.6rem;line-height:1;opacity:.85}
+  .logo-badge{height:34px;width:auto;object-fit:contain}
   .panel h2{font-family:'Cinzel',serif;color:var(--red-deep);font-size:1.28rem;letter-spacing:.6px}
   .panel .sub{color:#8a7a60;font-size:.84rem;margin-bottom:22px;border-bottom:1px dashed #e0d4b4;padding-bottom:14px}
   .prodi-pill{display:inline-block;background:var(--red);color:#fff;font-weight:700;
@@ -178,6 +182,7 @@
     border:1px solid rgba(177,17,22,.12);
   }
   .avatar svg{width:54%;height:54%;opacity:.55}
+  .avatar img{width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:12px}
   .nominee.abstain .avatar{background:linear-gradient(160deg,#efe7d2,#d9cdaf)}
   .nominee.abstain .avatar svg{opacity:.55}
   .nominee.abstain.sel{border-color:var(--gold);box-shadow:0 0 0 4px rgba(122,90,18,.16),0 10px 24px var(--shadow)}
@@ -207,6 +212,7 @@
   }
   .modal .kanji-big{font-family:'Noto Sans JP',sans-serif;font-weight:900;
     color:var(--red);font-size:2.4rem;line-height:1;margin-bottom:8px;opacity:.9}
+  .modal .logo-big{height:56px;width:auto;margin:0 auto 8px;display:block;object-fit:contain}
   .modal h3{font-family:'Cinzel',serif;color:var(--red-deep);font-size:1.4rem;margin-bottom:12px}
   .modal p{color:#6a5a45;font-size:.92rem;line-height:1.5;margin-bottom:6px}
   .modal .warn{color:var(--red);font-weight:700;font-size:.84rem;margin:10px 0 22px}
@@ -250,17 +256,8 @@
   <div class="login-wrap">
     <div class="card login-card">
       <div class="seal">
-        <!-- helm samurai (kabuto) -->
-        <svg viewBox="0 0 64 64" fill="none">
-          <path d="M32 8C18 8 9 18 8 30c-1 8 3 14 6 16h36c3-2 7-8 6-16C55 18 46 8 32 8Z" fill="#F5C518"/>
-          <path d="M32 8C18 8 9 18 8 30c10-4 18-5 24-5s14 1 24 5C55 18 46 8 32 8Z" fill="#FFE07A"/>
-          <path d="M32 14c-3 6-3 12 0 18 3-6 3-12 0-18Z" fill="#B11116"/>
-          <path d="M20 16c0 8 4 14 12 14s12-6 12-14" stroke="#B11116" stroke-width="2.4" fill="none"/>
-          <circle cx="32" cy="33" r="4" fill="#B11116"/>
-          <path d="M14 46h36v4a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4v-4Z" fill="#F5C518"/>
-        </svg>
+        <img src="assets/logo.png" alt="Logo ARSANA">
       </div>
-      <div class="jp-sub">武士道 · ARSANA</div>
       <h1>PEMILIHAN BADAN<br>ANGKATAN ARSANA</h1>
       <p class="desc">Pemilihan Ketua Angkatan &amp; Dewan Perwakilan Prodi</p>
 
@@ -282,14 +279,9 @@
 <section id="screen-ketang" class="screen">
   <div class="topbar">
     <div class="crest">
-      <svg viewBox="0 0 64 64" fill="none">
-        <path d="M32 8C20 8 12 16 11 27c-1 7 2 12 5 15h32c3-3 6-8 5-15C52 16 44 8 32 8Z" fill="#B11116"/>
-        <path d="M32 16c-2 5-2 10 0 15 2-5 2-10 0-15Z" fill="#F5C518"/>
-        <circle cx="32" cy="30" r="3.5" fill="#F5C518"/>
-      </svg>
+      <img src="assets/logo.png" alt="Logo ARSANA">
     </div>
     <div class="brand"><b>BADAN ANGKATAN ARSANA</b><span>Pemilihan Raya 2025</span></div>
-    <div class="jp-tag">選挙</div>
   </div>
 
   <div class="container">
@@ -301,7 +293,7 @@
 
     <div class="panel">
       <div class="panel-head">
-        <span class="kanji-badge">将</span>
+        <img class="logo-badge" src="assets/logo.png" alt="Logo">
         <h2>Pilih Calon Ketua Angkatan</h2>
       </div>
       <p class="sub">Pilih satu (1) calon Ketua Angkatan ARSANA. Pilihan tidak dapat diubah setelah disubmit.</p>
@@ -320,14 +312,9 @@
 <section id="screen-dpp" class="screen">
   <div class="topbar">
     <div class="crest">
-      <svg viewBox="0 0 64 64" fill="none">
-        <path d="M32 8C20 8 12 16 11 27c-1 7 2 12 5 15h32c3-3 6-8 5-15C52 16 44 8 32 8Z" fill="#B11116"/>
-        <path d="M32 16c-2 5-2 10 0 15 2-5 2-10 0-15Z" fill="#F5C518"/>
-        <circle cx="32" cy="30" r="3.5" fill="#F5C518"/>
-      </svg>
+      <img src="assets/logo.png" alt="Logo ARSANA">
     </div>
     <div class="brand"><b>BADAN ANGKATAN ARSANA</b><span>Pemilihan Raya 2025</span></div>
-    <div class="jp-tag">選挙</div>
   </div>
 
   <div class="container">
@@ -339,7 +326,7 @@
 
     <div class="panel">
       <div class="panel-head">
-        <span class="kanji-badge">議</span>
+        <img class="logo-badge" src="assets/logo.png" alt="Logo">
         <h2>Pilih Dewan Perwakilan Prodi</h2>
         <span class="prodi-pill" id="prodiPill">PRODI</span>
       </div>
@@ -360,14 +347,9 @@
 <section id="screen-done" class="screen">
   <div class="topbar">
     <div class="crest">
-      <svg viewBox="0 0 64 64" fill="none">
-        <path d="M32 8C20 8 12 16 11 27c-1 7 2 12 5 15h32c3-3 6-8 5-15C52 16 44 8 32 8Z" fill="#B11116"/>
-        <path d="M32 16c-2 5-2 10 0 15 2-5 2-10 0-15Z" fill="#F5C518"/>
-        <circle cx="32" cy="30" r="3.5" fill="#F5C518"/>
-      </svg>
+      <img src="assets/logo.png" alt="Logo ARSANA">
     </div>
     <div class="brand"><b>BADAN ANGKATAN ARSANA</b><span>Pemilihan Raya 2025</span></div>
-    <div class="jp-tag">選挙</div>
   </div>
 
   <div class="done-wrap">
@@ -378,7 +360,7 @@
           <path d="M20 33l8 8 16-18" stroke="#F5C518" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      <div class="jp-sub">感謝 · ARIGATO</div>
+      <img class="logo-sub" src="assets/logo.png" alt="Logo ARSANA">
       <h2>Suara Anda Tercatat!</h2>
       <p>Terima kasih telah berpartisipasi dalam <b>Pemilihan Badan Angkatan ARSANA 2025</b>.</p>
       <p>Kontribusi Anda menentukan masa depan angkatan.</p>
@@ -393,7 +375,7 @@
 <!-- ============ CONFIRM MODAL ============ -->
 <div class="overlay" id="overlay">
   <div class="modal">
-    <div class="kanji-big">決</div>
+    <img class="logo-big" src="assets/logo.png" alt="Logo">
     <h3>Konfirmasi Suara</h3>
     <p>Apakah Anda yakin dengan pilihan Anda?</p>
     <div class="summary" id="summaryBox"></div>
@@ -421,26 +403,80 @@ const PRODI_MAP = {
   '411325': 'ASP'
 };
 
+// Daftar NIM yang berhak memilih (whitelist). NIM di luar daftar ini akan ditolak.
+const ALLOWED_NIM = new Set([
+  '4111250000','4113250018','4112250120','4113250116','4111250018','4112250271','4113250035','4113250053','4112250059','4113250004',
+  '4111250077','4111250037','4111250045','4113250112','4113250058','4112250056','4112250039','4111250066','4113250017','4111250035',
+  '4112250246','4111250005','4112250198','4111250057','4112250167','4112250296','4111250073','4113250016','4112250066','4112250014',
+  '4113250047','4111250063','4111250052','4112250125','4112250269','4112250237','4112250191','4113250052','4113250002','4112250284',
+  '4112250276','4112250111','4112250221','4111250062','4113250090','4112250105','4111250046','4112250286','4112250016','4112250282',
+  '4112250160','4111250044','4113250095','4112250189','4112250247','4112250126','4113250043','4112250053','4111250009','4112250239',
+  '4112250202','4113250075','4111250042','4112250294','4111250079','4111250006','4113250077','4112250208','4113250030','4112250123',
+  '4112250129','4113250083','4112250092','4112250103','4112250008','4111250055','4112250205','4112250021','4112250268','4112250230',
+  '4112250009','4112250220','4113250096','4121240116','4112250005','4112250067','4112250235','4111250032','4112250187','4112250263',
+  '4113250001','4112250265','4113250111','4111250067','4111250015','4112250081','4113250088','4111250026','4111250014','4112250055',
+  '4112250017','4113250012','4113250101','4112250174','4112250212','4113250102','4112250131','4112250165','4112250290','4111250075',
+  '4113250064','4112250248','4112250074','4112250274','4112250223','4112250046','4113250098','4111250012','4113250056','4111250064',
+  '4111250074','4112250257','4112250035','4113250046','4112250238','4111250039','4113250117','4112250135','4112250151','4112250042',
+  '4113250110','4112250217','4112250087','4112250166','4112250173','4112250096','4111250056','4112250184','4112250076','4112250037',
+  '4112250225','4112250149','4112250033','4112250154','4112250250','4113250120','4113250079','4111250008','4113250084','4111250031',
+  '4112250178','4113250099','4112250204','4112250188','4112250124','4112250010','4112250141','4112250233','4111250061','4112250045',
+  '4112250232','4111250010','4113250028','4113250022','4112250193','4112250023','4112250218','4113250100','4111250003','4112250068',
+  '4112250222','4111250078','4112250231','4113250113','4112250133','4112250060','4112250241','4113250029','4111250065','4112250127',
+  '4113250010','4112250134','4113250032','4113250092','4112250108','4112250273','4112250236','4112250200','4112250183','4112250062',
+  '4112250153','4112250020','4113250108','4112250159','4111250002','4112250073','4113250109','4112250277','4112250069','4112250001',
+  '4113250089','4113250027','4112250182','4112250169','4113250069','4112250003','4112250040','4111250004','4112250283','4111250029',
+  '4112250143','4112250054','4112250122','4113250076','4112250281','4112250004','4112250209','4112250242','4112250064','4112250050',
+  '4112250186','4112250075','4112250219','4112250162','4113250107','4113250115','4112250094','4112250199','4112250026','4112250036',
+  '4113250085','4113250034','4112250201','4112250185','4112250052','4111250080','4111250028','4112250245','4112250072','4112250213',
+  '4112250018','4111250033','4112250156','4112250048','4111250049','4112250295','4113250061','4111250076','4112250194','4113250050',
+  '4113250036','4112250080','4112250032','4113250062','4111250040','4111250022','4113250048','4112250049','4113250074','4112250138',
+  '4112250089','4111250001','4112250172','4112250254','4112250297','4112250006','4112250029','4113240182','4112250114','4113250073',
+  '4113250007','4112250181','4112250266','4112250145','4112250057','4112250084','4113250082','4112250115','4112250024','4112250224',
+  '4111250043','4112250077','4112250095','4112250168','4112250015','4112250264','4112250292','4112250109','4111250050','4112250267',
+  '4113250078','4112250117','4112250249','4112250252','4111250019','4113250015','4112250260','4112250258','4113250065','4112250288',
+  '4112250041','4112250228','4112250275','4131240368','4112250287','4113250080','4111250070','4112250136','4113250008','4113250063',
+  '4111250058','4112250227','4112250161','4112250121','4112250007','4113250071','4112250101','4112250279','4112250082','4112250272',
+  '4112250102','4113250114','4112250038','4112250065','4112250113','4112250243','4113250044','4113250087','4112250106','4111250013',
+  '4112250132','4112250293','4112250255','4112250086','4113250057','4111250047','4112250253','4112250177','4112250137','4112250211',
+  '4112250152','4112250047','4113250067','4113250103','4112250146','4112250011','4111250038','4112250285','4112250147','4112250180',
+  '4113250106','4111250036','4112250079','4112250244','4112250256','4112250099','4112250196','4112250130','4112250240','4111250024',
+  '4113250040','4112250083','4112250216','4112250139','4113250005','4112250093','4112250214','4111250034','4113250009','4112250197',
+  '4112250229','4113250013','4112250144','4113250037','4112250058','4111250054','4113250011','4111250053','4112250116','4113250039',
+  '4112250028','4113250097','4113250021','4113250094','4112250298','4112250176','4112250097','4112250259','4113250041','4112250192',
+  '4112250142','4112250179','4112250043','4112250051','4112250085','4112250030','4112250061','4113250006','4112250289','4112250031',
+  '4112250215','4112250261','4111250027','4111250016','4113250060','4112250071','4113250038','4112250150','4112250226','4111250068',
+  '4112250119','4112250175','4112250088','4112250148','4111250020','4112250262','4113250023','4112250128','4112250195','4112250110',
+  '4113250104','4112250100','4112250098','4111250048','4112250044','4112250107','4112250012','4112250206','4113250045','4111250025',
+  '4112250027','4112250207','4112250278','4112250251','4113250068','4113250026','4112250034','4111250030','4112250158','4112250013',
+  '4113250070','4111250069','4112250140','4112250025','4111250011','4113250033','4113250042','4113250086','4111250051','4113250093',
+  '4113250024','4112250280','4112250104','4112250164','4111250023','4113250003','4111250041','4113250020','4112250019','4112250291',
+  '4113250105','4113250054','4111250059','4113250049','4112250078','4112250210','4113250031','4112250063','4112250112','4111250072',
+  '4111250021','4112250270','4112250190','4113250055','4112250157','4113250118','4112250070','4112250002','4111250007','4113250072',
+  '4112250171','4111250071','4112250022','4113250014','4112250203','4112250234','4111250017','4113250051','4112250155','4112250163',
+  '4112250090','4112250091','4113250019','4113250081','4113250025'
+]);
+
 // Daftar calon Ketua Angkatan (4 orang) -- ubah nama sesuai kebutuhan
 const KETANG = [
-  { no:1, nama:'Muhammad Ihsan Zaki', cls:'Ketang' },
-  { no:2, nama:'Abu Dzar Al Ghifari', cls:'Ketang' },
-  { no:3, nama:'Setiawan Dwicahyo', cls:'Ketang' },
-  { no:4, nama:'M.Faqih Radanta Ali', cls:'Ketang' }
+  { no:1, nama:'Muhammad Ihsan Zaki', cls:'Ketang', foto:'assets/ketang-1.png' },
+  { no:2, nama:'Abu Dzar Al Ghifari', cls:'Ketang', foto:'assets/ketang-2.png' },
+  { no:3, nama:'Setiawan Dwicahyo', cls:'Ketang', foto:'assets/ketang-3.png' },
+  { no:4, nama:'M.Faqih Radanta Ali', cls:'Ketang', foto:'assets/ketang-4.png' }
 ];
 
 // Daftar calon DPP per prodi -- ubah nama sesuai kebutuhan
 const DPP = {
   MAP: [
-    { no:1, nama:'Muhamad Davarel Prabowo', cls:'D-IV MAP' },
-    { no:2, nama:'NOEL JHODY PRATAMA', cls:'D-IV MAP' }
+    { no:1, nama:'Muhamad Davarel Prabowo', cls:'D-IV MAP', foto:'assets/dpp-map-1.png' },
+    { no:2, nama:'NOEL JHODY PRATAMA', cls:'D-IV MAP', foto:'assets/dpp-map-2.png' }
   ],
   MKN: [
-    { no:1, nama:'Ferdinanda Afifi Saifuddin', cls:'D-IV MKN' },
-    { no:2, nama:'Muhammad Keisya Jirjis', cls:'D-IV MKN' }
+    { no:1, nama:'Ferdinanda Afifi Saifuddin', cls:'D-IV MKN', foto:'assets/dpp-mkn-1.png' },
+    { no:2, nama:'Muhammad Keisya Jirjis', cls:'D-IV MKN', foto:'assets/dpp-mkn-2.png' }
   ],
   ASP: [
-    { no:1, nama:'Afif Fakhruddin', cls:'D-IV ASP' }
+    { no:1, nama:'Afif Fakhruddin', cls:'D-IV ASP', foto:'assets/dpp-asp-1.png' }
   ]
 };
 
@@ -483,6 +519,14 @@ function doLogin(){
     err.textContent = 'Token salah. Silakan periksa kembali.';
     return;
   }
+  if(!ALLOWED_NIM.has(nim)){
+    err.textContent = 'NIM Anda tidak terdaftar sebagai pemilih dalam Pemilihan Raya ini.';
+    return;
+  }
+  if(localStorage.getItem('arsana_voted_' + nim)){
+    err.textContent = 'NIM ini sudah pernah digunakan untuk memilih. Setiap NIM hanya dapat memilih satu kali.';
+    return;
+  }
   const prefix = nim.substring(0,6);
   const prodi = PRODI_MAP[prefix];
   if(!prodi){
@@ -507,9 +551,12 @@ function doLogin(){
    RENDER KARTU CALON
    ===================================================================== */
 function card(item, selected){
+  const isiAvatar = item.foto
+    ? `<img src="${item.foto}" alt="Foto ${item.nama}" onerror="this.parentElement.innerHTML='${AVATAR_SVG.replace(/'/g,"\\'").replace(/\n/g,'')}'">`
+    : AVATAR_SVG;
   return `<div class="nominee${selected?' sel':''}" data-no="${item.no}">
     <span class="num">No. ${item.no}</span>
-    <div class="avatar">${AVATAR_SVG}</div>
+    <div class="avatar">${isiAvatar}</div>
     <div class="nm">${item.nama}</div>
     <div class="cls">${item.cls}</div>
   </div>`;
@@ -590,6 +637,7 @@ function submitVote(){
   // Jika SCRIPT_URL belum diisi, langsung ke halaman selesai (mode demo)
   if(SCRIPT_URL === 'PASTE_URL_WEB_APP_KAMU_DISINI'){
     console.warn('SCRIPT_URL belum diisi — berjalan dalam mode demo.');
+    localStorage.setItem('arsana_voted_' + state.nim, '1');
     setTimeout(()=>{ closeModal(); show('screen-done'); btn.disabled=false; btn.textContent='Ya, Saya Yakin'; }, 600);
     return;
   }
@@ -598,7 +646,10 @@ function submitVote(){
   // dari Apps Script (beda domain), jadi kita kirim saja tanpa membaca respons.
   // Pengecekan anti double-vote tetap dijaga di sisi Apps Script (server).
   fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:fd })
-    .then(()=>{ closeModal(); show('screen-done'); })
+    .then(()=>{
+      localStorage.setItem('arsana_voted_' + state.nim, '1');
+      closeModal(); show('screen-done');
+    })
     .catch(err=>{
       console.error('Error!', err.message);
       alert('Gagal mengirim suara. Periksa koneksi internet Anda lalu coba lagi.');
