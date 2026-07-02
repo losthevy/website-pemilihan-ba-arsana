@@ -523,10 +523,6 @@ function doLogin(){
     err.textContent = 'NIM Anda tidak terdaftar sebagai pemilih dalam Pemilihan Raya ini.';
     return;
   }
-  if(localStorage.getItem('arsana_voted_' + nim)){
-    err.textContent = 'NIM ini sudah pernah digunakan untuk memilih. Setiap NIM hanya dapat memilih satu kali.';
-    return;
-  }
   const prefix = nim.substring(0,6);
   const prodi = PRODI_MAP[prefix];
   if(!prodi){
@@ -637,19 +633,14 @@ function submitVote(){
   // Jika SCRIPT_URL belum diisi, langsung ke halaman selesai (mode demo)
   if(SCRIPT_URL === 'PASTE_URL_WEB_APP_KAMU_DISINI'){
     console.warn('SCRIPT_URL belum diisi — berjalan dalam mode demo.');
-    localStorage.setItem('arsana_voted_' + state.nim, '1');
     setTimeout(()=>{ closeModal(); show('screen-done'); btn.disabled=false; btn.textContent='Ya, Saya Yakin'; }, 600);
     return;
   }
 
   // Memakai mode 'no-cors': browser TIDAK mengizinkan membaca balasan
   // dari Apps Script (beda domain), jadi kita kirim saja tanpa membaca respons.
-  // Pengecekan anti double-vote tetap dijaga di sisi Apps Script (server).
   fetch(SCRIPT_URL, { method:'POST', mode:'no-cors', body:fd })
-    .then(()=>{
-      localStorage.setItem('arsana_voted_' + state.nim, '1');
-      closeModal(); show('screen-done');
-    })
+    .then(()=>{ closeModal(); show('screen-done'); })
     .catch(err=>{
       console.error('Error!', err.message);
       alert('Gagal mengirim suara. Periksa koneksi internet Anda lalu coba lagi.');
